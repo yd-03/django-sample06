@@ -1,3 +1,12 @@
 from django.shortcuts import render
+from django.views.generic import TemplateView
 
-# Create your views here.
+from manager.models import *
+
+
+class WorkerListView(TemplateView):
+    template_name = "worker_list.html"
+
+    def get(self, request, *args, **kwargs):
+        context = super(WorkerListView, self).get_context_data(**kwargs)
+        return render(request, self.template_name, context)
